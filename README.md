@@ -1,4 +1,6 @@
-[ES]
+## Read me
+
+#### Español
 
 Este repositorio es educacional.
 
@@ -9,7 +11,7 @@ En ningún caso debe usarse sin supervisión de su autor.
 Cualquier uso indebido es tu problema y te haces responsable de todo lo que ocurra.
 
 
-[EN]
+#### English
 
 This repository is educational. 
 
