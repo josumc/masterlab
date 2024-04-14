@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  left:
+    hostname: "left"
+    image: m8php
+    container_name: m8_php_1
+    volumes:
+      - ./php:/var/www/html
+    ports:
+      - "81:80"
+    depends_on:
+      - db
+  right:
+    hostname: "right"
+    image: m8php
+    container_name: m8_php_2
+    volumes:
+      - ./php2:/var/www/html
+    ports:
+      - "82:80"
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0
+    container_name: m8_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: r00t
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: us3r
+    volumes:
+      - ./create.sql/:/docker-entrypoint-initdb.d/
+    ports:
+      - "127.0.0.1:3306:3306"

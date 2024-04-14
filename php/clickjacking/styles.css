@@ -1,0 +1,28 @@
+/* Estilos para la página de demostración */
+body {
+  font-family: Arial, sans-serif;
+}
+
+#sliderContainer {
+  margin-bottom: 20px;
+}
+
+#opacitySlider {
+  width: 200px;
+}
+
+#maliciousFrame {
+  position: absolute;
+  width: 600;
+  height: 600;
+  z-index: 1;
+}
+
+#mimickFrame {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  z-index: 2;
+}
+
+/* Otros estilos según tu diseño */
