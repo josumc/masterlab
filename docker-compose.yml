@@ -1,8 +1,8 @@
 services:
   left:
     hostname: "left"
-    image: m8php
-    container_name: m8_php_1
+    image: masterlab
+    container_name: ml_1
     volumes:
       - ./php:/var/www/html
     ports:
@@ -11,8 +11,8 @@ services:
       - db
   right:
     hostname: "right"
-    image: m8php
-    container_name: m8_php_2
+    image: masterlab
+    container_name: ml_2
     volumes:
       - ./php2:/var/www/html
     ports:
@@ -21,7 +21,7 @@ services:
       - db
   db:
     image: mysql:8.0
-    container_name: m8_mysql
+    container_name: ml_db
     environment:
       MYSQL_ROOT_PASSWORD: r00t
       MYSQL_DATABASE: test_db
