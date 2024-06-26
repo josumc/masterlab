@@ -8,11 +8,12 @@
     Si usas "*" añade el carácter de escape "\*"<br>
 <br><br>
     El resultado de la operación es:
-
+{$smarty.version}
     {php}
     global $op;
-       echo(exec("expr " . $op));
+    echo(exec("expr " . $op));
     {/php}
+
 
   </body>
 </html>

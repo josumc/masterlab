@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2024-05-30 15:47:48
+<?php /* Smarty version 2.6.31, created on 2024-06-25 17:22:03
          compiled from index.tpl */ ?>
 <html>
   <head>
@@ -11,11 +11,13 @@
     Si usas "*" añade el carácter de escape "\*"<br>
 <br><br>
     El resultado de la operación es:
+<?php echo '2.6.31'; ?>
 
     <?php 
     global $op;
-       echo(exec("expr " . $op));
+    echo(exec("expr " . $op));
      ?>
+
 
   </body>
 </html>
