@@ -1,0 +1,53 @@
+body {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.navbar,
+.filter-bar {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.btn-login {
+    background-color: #ff7f00;
+    color: #fff;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.card-body {
+    background-color: #f0f8ff;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.btn-send {
+    background-color: #ff7f00;
+    color: #fff;
+    margin-top: 15px;
+}
+
+.car-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.details-container {
+    display: flex;
+    gap: 20px;
+}
+
+.details-container .info-box,
+.details-container .desc-box {
+    background-color: #f0f8ff;
+    padding: 20px;
+    border-radius: 8px;
+}
