@@ -18,19 +18,19 @@ CREATE TABLE IF NOT EXISTS coches (
     id INT AUTO_INCREMENT PRIMARY KEY,
     marca VARCHAR(50),
     modelo VARCHAR(50),
-    cilindrada INT,
-    consumo FLOAT,
-    anio INT
+    anio INT,
+    precio INT,
+    foto VARCHAR(50)
 );
 
-INSERT INTO coches (marca, modelo, cilindrada, consumo, anio) VALUES
-    ('SEAT', '600', 600, 6.0, 1957),
-    ('SEAT', '124', 1197, 8.0, 1968),
-    ('SEAT', '1500', 1471, 9.5, 1963),
-    ('SEAT', '850', 843, 5.5, 1966),
-    ('SEAT', '127', 1010, 7.0, 1971),
-    ('SEAT', '1430', 1438, 10.0, 1969),
-    ('Renault', '4', 845, 7.5, 1961),
-    ('Renault', '8', 956, 8.0, 1962),
-    ('Renault', '5', 956, 6.5, 1972),
-    ('Citroën', '2CV', 375, 5.0, 1948);
+INSERT INTO coches (marca, modelo, anio, precio, foto) VALUES
+    ('SEAT', '600', 1957, 3500, '600.png'),
+    ('SEAT', '124', 1968, 4500, '124.png'),
+    ('SEAT', '1500', 1963, 5000, '1500.png'),
+    ('SEAT', '850', 1966, 1400, '850.png'),
+    ('SEAT', '127', 1971, 750, '127.png'),
+    ('SEAT', '131', 1973, 5000, '131.png'),
+    ('Renault', '4', 1961, 3000, '4.png'),
+    ('Renault', '8', 1962, 2500, '8.png'),
+    ('Renault', '5', 1972, 1750, '5.png'),
+    ('Citroën', '2CV', 1948, 4700, '2cv.png');
