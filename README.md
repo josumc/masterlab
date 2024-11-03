@@ -19,3 +19,8 @@ reconoce los riesgos inherentes del uso de material educativo.
 ### Arrancar lab
 
 `docker compose up -d` o `docker-compose up -d`
+
+### Operación
+
+El script `scripts/clean_database.sh` reinicia la base de datos de la
+aplicación. Sirve para limpiar los datos de esta y reiniciarlos a origen.
