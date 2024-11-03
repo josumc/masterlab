@@ -2,7 +2,7 @@
 <footer class="footer">
   <div class="container">
     <p>&copy; 2024 Coches Viejunos. Todos los derechos reservados.</p>
-    <p>Dirección: Calle de los Clásicos 123, Malaga, España</p>
+    <p>Dirección: Calle de los Clásicos 123, Málaga, España</p>
     <p>Teléfono: +34 900 123 456 | Email: contacto@cochesviejunos.com</p>
     <div>
       <a href="#">Términos y condiciones</a> |

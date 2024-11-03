@@ -51,3 +51,21 @@ body {
     padding: 20px;
     border-radius: 8px;
 }
+
+.search-form {
+    max-width: 400px;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+.btn-custom {
+    background-color: orange;
+    color: white;
+    border: none;
+}
+.btn-custom:hover {
+    background-color: darkorange;
+}
+.form-control {
+    flex-grow: 1;
+}

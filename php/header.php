@@ -1,4 +1,3 @@
-<!-- header.php -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,12 +17,22 @@
       <a class="navbar-brand" href="index.php">
         <img src="imgs/logo.png" alt="Coches Viejunos" width="250">
       </a>
-      <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) : ?>
-        <?php if ($_SERVER['PHP_SELF'] !== '/login.php') : ?>
-          <div class="ms-auto">
-            <a href="login.php" class="btn btn-login">Iniciar Sesión</a>
+      <div class="ms-auto">
+        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+              Bienvenido, <?php echo $_SESSION['username']; ?>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="userMenu">
+              <li><a class="dropdown-item" href="profile.php?username=<?php echo $_SESSION['username'] ?>">Mi Perfil</a></li>
+              <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+            </ul>
           </div>
+        <?php else: ?>
+          <?php if ($_SERVER['PHP_SELF'] !== '/login.php'): ?>
+            <a href="login.php" class="btn btn-login">Iniciar Sesión</a>
+          <?php endif; ?>
         <?php endif; ?>
-      <?php endif; ?>
+      </div>
     </div>
   </nav>
