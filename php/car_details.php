@@ -18,7 +18,8 @@ include('db.php'); ?>
 
       $likesQuery = $db->query('SELECT u.username FROM likes l JOIN users u ON l.user_id = u.id WHERE l.car_id = ' . $id);
       while ($like = $likesQuery->fetch_assoc()) {
-        echo '<span class="badge bg-primary me-1 mb-1">' . $like['username'] . '</span>';
+      echo '<a href="public_profile.php?username=' . $like['username'] . '" class="badge bg-primary me-1 mb-1">' . $like['username'] . '</a>';
+
       }
 
       echo '</div>';
