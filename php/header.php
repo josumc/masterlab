@@ -18,13 +18,14 @@
         <img src="imgs/logo.png" alt="Coches Viejunos" width="250">
       </a>
       <div class="ms-auto">
-        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true):
+                  $usernameLink = isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
-              Bienvenido, <?php echo $_SESSION['username']; ?>
+              Bienvenido, <?= $usernameLink ?>
             </button>
             <ul class="dropdown-menu" aria-labelledby="userMenu">
-              <li><a class="dropdown-item" href="profile.php?username=<?php echo $_SESSION['username'] ?>">Mi Perfil</a></li>
+              <li><a class="dropdown-item" href="profile.php?username=<?= $usernameLink ?>">Mi Perfil</a></li>
               <li><a class="dropdown-item" href="logout.php">Logout</a></li>
             </ul>
           </div>

@@ -1,21 +1,26 @@
 <?php
 session_start();
 
-// Verifica si el usuario está autenticado
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
   header('Location: login.php');
   exit;
 }
 
 include('db.php');
-include('header.php');
-
-// Conexión a la base de datos
 $db = db_connect();
 
 $username = $_GET['username'];
 $query = $db->query('SELECT * FROM users WHERE username = "' . $username . '"');
 
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $newDescription = $_POST['description'];
+    $db->query('UPDATE users SET description = "' . $newDescription . '" WHERE username = "' . $username . '"');
+    header("Location: success.php");
+    exit;
+}
+
+include('header.php');
 
 if ($query->num_rows === 0) {
   echo '<div class="container my-5"><p>No se encontraron datos para este usuario.</p></div>';
@@ -24,7 +29,10 @@ if ($query->num_rows === 0) {
 }
 
 $user = $query->fetch_assoc();
+
+
 ?>
+
 
 <div class="container my-5">
   <div class="row">
@@ -40,6 +48,15 @@ $user = $query->fetch_assoc();
         <li><strong>API Key:</strong> <?php echo $user['apikey']; ?></li>
         <li><strong>Descripción:</strong> <?php echo $user['description']; ?></li>
       </ul>
+
+      <h4>Editar Descripción</h4>
+      <form action="profile.php?username=<?php echo $username; ?>" method="post">
+        <div class="form-group mb-3">
+          <label for="description">Descripción</label>
+          <textarea class="form-control" id="description" name="description" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+      </form>
     </div>
   </div>
 </div>
@@ -47,3 +64,4 @@ $user = $query->fetch_assoc();
 <?php
 include('footer.php');
 ?>
+
