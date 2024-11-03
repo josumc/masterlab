@@ -6,10 +6,13 @@
 
 <div class="container my-4">
   <div class="filter-bar p-3 rounded text-center">
-    <form class="d-flex justify-content-end" action="search.php" method="get" autocomplete="off" style="max-width: 400px; margin-left: auto;">
-      <input class="form-control me-2" type="search" placeholder="Buscar coches" aria-label="Buscar" name="q">
-      <button class="btn btn-custom" type="submit" style="background-color: orange; color: white;">Buscar</button>
-    </form>
+    <div class="d-flex align-items-center">
+      <a href="car_valuate.php" class="btn btn-secondary me-3" style="background-color: orange; color: white;">Evalua tu coche viejuno!</a>
+      <form class="d-flex justify-content-end" action="search.php" method="get" autocomplete="off" style="max-width: 400px; margin-left: auto;">
+        <input class="form-control me-2" type="search" placeholder="Buscar coches" aria-label="Buscar" name="q">
+        <button class="btn btn-custom" type="submit" style="background-color: orange; color: white;">Buscar</button>
+      </form>
+    </div>
   </div>
 </div>
 
