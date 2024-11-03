@@ -14,6 +14,9 @@
         echo "<div>Temperatura en Málaga: <span id='weather' data-value='$weather'></span></div>";
       }
       ?>
+      <!-- Si el usuario está logueado le saldrá un widget del tiempo con la temperatura.
+      Esperemos que sea seguro cargar url remotas o ...
+      (anotación del equipo de CochesViejunos) -->
       <form class="d-flex justify-content-end" action="search.php" method="get" autocomplete="off" style="max-width: 400px; margin-left: auto;">
         <input class="form-control me-2" type="search" placeholder="Buscar coches" aria-label="Buscar" name="q">
         <button class="btn btn-custom" type="submit" style="background-color: orange; color: white;">Buscar</button>
