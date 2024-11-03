@@ -1,13 +1,19 @@
 <?php session_start(); ?>
 <? include("db.php"); ?>
-
-
 <? include("header.php"); ?>
 
 <div class="container my-4">
   <div class="filter-bar p-3 rounded text-center">
     <div class="d-flex align-items-center">
       <a href="car_valuate.php" class="btn btn-secondary me-3" style="background-color: orange; color: white;">Evalua tu coche viejuno!</a>
+      <?php
+      if (isset($_COOKIE['user_info'])) {
+        include('serde.php');
+        $user_info = deser($_COOKIE['user_info']);
+        $weather = $user_info['weather'];
+        echo "<div>Temperatura en Málaga: <span id='weather' data-value='$weather'></span></div>";
+      }
+      ?>
       <form class="d-flex justify-content-end" action="search.php" method="get" autocomplete="off" style="max-width: 400px; margin-left: auto;">
         <input class="form-control me-2" type="search" placeholder="Buscar coches" aria-label="Buscar" name="q">
         <button class="btn btn-custom" type="submit" style="background-color: orange; color: white;">Buscar</button>
@@ -40,4 +46,5 @@
   </div>
 </div>
 
+<script src="js/meteo.js"></script>
 <? include("footer.php"); ?>
