@@ -5,5 +5,8 @@ $_SESSION = [];
 
 session_destroy();
 
+setcookie("user_info", "", time()-3600);
+
+
 header("Location: index.php");
 exit;
