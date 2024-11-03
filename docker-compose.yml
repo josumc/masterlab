@@ -5,20 +5,18 @@ services:
     container_name: ml_1
     volumes:
       - ./php:/var/www/html
-    ports:
-      - "81:80"
     depends_on:
       - db
+      - nginx
   right:
     hostname: "right"
     image: masterlab
     container_name: ml_2
     volumes:
       - ./php2:/var/www/html
-    ports:
-      - "82:80"
     depends_on:
       - db
+      - nginx
   db:
     image: mysql:8.0
     container_name: ml_db
@@ -27,7 +25,21 @@ services:
       MYSQL_DATABASE: test_db
       MYSQL_USER: user
       MYSQL_PASSWORD: us3r
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
       - ./create.sql/:/docker-entrypoint-initdb.d/
+      - masterlab_db:/var/lib/mysql
     ports:
       - "127.0.0.1:3306:3306"
+  nginx:
+    image: nginx:alpine-slim
+    container_name: ml_nginx
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./certs:/etc/nginx/ssl:ro
+    ports:
+      - "80:80"
+      - "443:443"
+volumes:
+  masterlab_db:
+    name: "masterlab_db"
