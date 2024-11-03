@@ -19,7 +19,7 @@ if (isset($_GET['year']) && isset($_GET['kilometers']) && isset($_GET['condition
   echo "<div class='container my-5'>
             <h3>Valor estimado: € $valuation</h3>
             <div class='alert alert-warning text-center mt-3'>
-                Advertencia, nuestra valoración no es vinculante y se trata de una estimación.
+                Advertencia, nuestra valoración no es vinculante y se trata de una estimación hecha <b>con la calculadora del sistema</b>.
             </div>
           </div>";
 }
