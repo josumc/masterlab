@@ -14,12 +14,15 @@ CREATE TABLE IF NOT EXISTS users (
     apikey VARCHAR(50),
     address VARCHAR(50),
     description VARCHAR(250),
-    image VARCHAR(50)
+    image VARCHAR(50),
+    is_admin TINYINT(1),
+    weather VARCHAR(250)
 );
 
-INSERT INTO users (name, username, email, pass, address, apikey, description, image) VALUES ('Juan Valdivia', 'juanvaldivia91', 'jvaldivia91@outluck.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Calle del Silencio, 3', '2ee30372a2a6b82ed02ac06cebdee58c', 'Me gustan los coches clásicos y el rock!', 'valdivia.jpeg');
-INSERT INTO users (name, username, email, pass, address, apikey, description, image) VALUES ('Pedro Andreu', 'pedroandreu87', 'pandreu87@jmail.com', 'b59c67bf196a4758191e42f76670ceba', 'Calle del Tambor, 45', '84e8cd18301caf8a296bd79cc3d2555f', 'Los buenos coches como el vino, mejoran con los años!', 'andreu.jpeg');
-INSERT INTO users (name, username, email, pass, address, apikey, description, image) VALUES ('Azucena Martin','azucenamartin76', 'amartin76@jmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Avenida Baja, 16', 'f6569f43a06a12e20286ed989a0b2ea1', 'Clásicos siempre!!!', 'azucena.jpeg');
+INSERT INTO users (name, username, email, pass, address, apikey, description, image, is_admin, weather) VALUES ('Admin', 'admin', 'admin@cochesviejunos.es', 'c93ccd78b2076528346216b3b2f701e6', 'Callejón del Perro', 'ac47b1480aa14227cd3c97f1a60c8241', 'Admin', 'admin.jpeg', 1, "https://api.open-meteo.com/v1/forecast?latitude=36.71&longitude=-4.42&current=temperature_2m");
+INSERT INTO users (name, username, email, pass, address, apikey, description, image, is_admin, weather) VALUES ('Juan Valdivia', 'juanvaldivia91', 'jvaldivia91@outluck.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Calle del Silencio, 3', '2ee30372a2a6b82ed02ac06cebdee58c', 'Me gustan los coches clásicos y el rock!', 'valdivia.jpeg', 0, "https://api.open-meteo.com/v1/forecast?latitude=36.71&longitude=-4.42&current=temperature_2m");
+INSERT INTO users (name, username, email, pass, address, apikey, description, image, is_admin, weather) VALUES ('Pedro Andreu', 'pedroandreu87', 'pandreu87@jmail.com', 'b59c67bf196a4758191e42f76670ceba', 'Calle del Tambor, 45', '84e8cd18301caf8a296bd79cc3d2555f', 'Los buenos coches como el vino, mejoran con los años!', 'andreu.jpeg',0, "https://api.open-meteo.com/v1/forecast?latitude=36.71&longitude=-4.42&current=temperature_2m");
+INSERT INTO users (name, username, email, pass, address, apikey, description, image, is_admin, weather) VALUES ('Azucena Martin','azucenamartin76', 'amartin76@jmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Avenida Baja, 16', 'f6569f43a06a12e20286ed989a0b2ea1', 'Clásicos siempre!!!', 'azucena.jpeg', 0, "https://api.open-meteo.com/v1/forecast?latitude=36.71&longitude=-4.42&current=temperature_2m");
 
 CREATE TABLE IF NOT EXISTS coches (
     id INT AUTO_INCREMENT PRIMARY KEY,

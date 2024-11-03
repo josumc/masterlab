@@ -7,13 +7,14 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 }
 
 include("db.php");
+include("serde.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $username = trim($_POST['username']);
   $password = trim($_POST['password']);
 
   $conn = db_connect();
-  $sql = "SELECT id, pass FROM users WHERE username='$username'";
+  $sql = "SELECT id, pass, is_admin, weather FROM users WHERE username='$username'";
   $result = $conn->query($sql);
 
   if ($result->num_rows == 1) {
@@ -21,6 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (md5($password) === $row['pass']) {
       $_SESSION['loggedin'] = true;
       $_SESSION['username'] = $username;
+
+      /* $serinfo = ser($username, $row['is_admin'], $row['weather']); */
+      /* setcookie("user_info", $serinfo, time() + 36000, "/"); */
+      create_cookie($username);
       header('Location: /');
       exit();
     }
