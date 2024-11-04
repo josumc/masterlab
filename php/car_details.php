@@ -18,8 +18,7 @@ include('db.php'); ?>
 
       $likesQuery = $db->query('SELECT u.username FROM likes l JOIN users u ON l.user_id = u.id WHERE l.car_id = ' . $id);
       while ($like = $likesQuery->fetch_assoc()) {
-      echo '<a href="public_profile.php?username=' . $like['username'] . '" class="badge bg-primary me-1 mb-1">' . $like['username'] . '</a>';
-
+        echo '<a href="public_profile.php?username=' . $like['username'] . '" class="badge bg-primary me-1 mb-1">' . $like['username'] . '</a>';
       }
 
       echo '</div>';
@@ -49,6 +48,9 @@ include('db.php'); ?>
       echo '  </div>
               </div>';
 
+      echo '<div class="mt-3">
+              <button onclick="window.location.href=\'redirect.php?url=index.php\'" class="btn btn-secondary">Volver</button>
+            </div>';
     } else {
       echo '<p>Coche no encontrado.</p>';
     }
