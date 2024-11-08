@@ -7,7 +7,6 @@ services:
       - ./php:/var/www/html
     depends_on:
       - db
-      - nginx
   right:
     hostname: "right"
     image: masterlab
@@ -16,7 +15,6 @@ services:
       - ./php2:/var/www/html
     depends_on:
       - db
-      - nginx
   db:
     image: mysql:8.0
     container_name: ml_db
@@ -40,6 +38,9 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    depends_on:
+      - left
+      - right
 volumes:
   masterlab_db:
     name: "masterlab_db"
