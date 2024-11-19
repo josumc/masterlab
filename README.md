@@ -16,11 +16,15 @@ reconoce los riesgos inherentes del uso de material educativo.
 
 `docker build -t masterlab:latest`
 
-### Arrancar lab
+### Arrancar el lab
 
 `docker compose up -d` o `docker-compose up -d`
 
-### Operación
+### Scripts auxiliares:
 
 El script `scripts/clean_database.sh` reinicia la base de datos de la
 aplicación. Sirve para limpiar los datos de esta y reiniciarlos a origen.
+
+El script `scripts/fix_imgs_permissions.sh` cambia el propietario de la carpeta "imgs" dentro del contenedor
+del servicio `ml_1`. Esto solo es necesario si te está dando problemas en caso
+de que encuentres el RFI y no puedas subir nada.
