@@ -1,7 +1,9 @@
 <?php
 include('header.php');
 
-$searchQuery = $_GET['q'];
+// Obtener y sanitizar la entrada del parámetro 'q'
+$searchQuery = isset($_GET['q']) ? $_GET['q'] : '';
+$searchQuery = htmlspecialchars($searchQuery, ENT_QUOTES, 'UTF-8');
 ?>
 
 <div class="container my-5">
