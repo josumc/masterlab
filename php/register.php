@@ -1,6 +1,7 @@
 <?php
 include('db.php');
 
+// Función para generar la API Key
 function generateApiKey()
 {
   return md5(uniqid(rand(), true));
@@ -8,30 +9,52 @@ function generateApiKey()
 
 $default_widget_url = "https://api.open-meteo.com/v1/forecast?latitude=36.71&longitude=-4.42&current=temperature_2m";
 
+// Procesamiento del formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $db = db_connect();
 
-  $name = $_POST['name'];
-  $username = $_POST['username'];
-  $email = $_POST['email'];
-  $password = md5($_POST['password']);
-  $address = $_POST['address'];
-  $description = $_POST['description'];
+  // Sanitización de los datos de entrada
+  $name = htmlspecialchars(trim($_POST['name']));
+  $username = htmlspecialchars(trim($_POST['username']));
+  $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+  $password = password_hash(trim($_POST['password']), PASSWORD_BCRYPT); // Usamos bcrypt para cifrar la contraseña
+  $address = htmlspecialchars(trim($_POST['address']));
+  $description = htmlspecialchars(trim($_POST['description']));
   $apiKey = generateApiKey();
 
+  // Comprobamos si el correo o el nombre de usuario ya existen en la base de datos
   $checkQuery = $db->query("SELECT * FROM users WHERE email = '$email' OR username = '$username'");
   if ($checkQuery->num_rows > 0) {
     echo '<div class="alert alert-danger text-center">El correo o nombre de usuario ya están en uso.</div>';
   } else {
+    // Directorio donde se almacenarán las imágenes
     $targetDir = "imgs/users/";
-    $photoName = basename($_FILES['photo']['name']);
+
+    // Sanitización y generación de un nombre único para el archivo
+    $photoName = uniqid('user_', true) . '.' . pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
     $targetFilePath = $targetDir . $photoName;
-    move_uploaded_file($_FILES['photo']['tmp_name'], $targetFilePath);
 
-    $db->query("INSERT INTO users (name, username, email, pass, address, description, image, apikey,weather) VALUES ('$name', '$username', '$email', '$password', '$address', '$description', '$photoName', '$apiKey', '$default_widget_url')");
+    // Validación del archivo de imagen
+    $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
+    $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
 
-    header('Location: register.php?message=success');
-    exit;
+    // Verificamos que el archivo sea una imagen válida
+    $checkImage = getimagesize($_FILES['photo']['tmp_name']);
+    if ($checkImage !== false && in_array($fileType, $allowedTypes)) {
+      // La imagen es válida, moverla al directorio de destino
+      if (move_uploaded_file($_FILES['photo']['tmp_name'], $targetFilePath)) {
+        // Insertar los datos del usuario en la base de datos
+        $db->query("INSERT INTO users (name, username, email, pass, address, description, image, apikey, weather)
+                    VALUES ('$name', '$username', '$email', '$password', '$address', '$description', '$photoName', '$apiKey', '$default_widget_url')");
+
+        header('Location: register.php?message=success');
+        exit;
+      } else {
+        echo '<div class="alert alert-danger text-center">Hubo un error al subir la imagen.</div>';
+      }
+    } else {
+      echo '<div class="alert alert-danger text-center">Por favor, suba una imagen válida (JPG, JPEG, PNG, GIF).</div>';
+    }
   }
 }
 
