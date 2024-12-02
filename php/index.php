@@ -1,6 +1,6 @@
 <?php session_start(); ?>
-<? include("db.php"); ?>
-<? include("header.php"); ?>
+<?php include("db.php"); ?>
+<?php include("header.php"); ?>
 
 <div class="container my-4">
   <div class="filter-bar p-3 rounded text-center">
@@ -28,19 +28,28 @@
 <div class="container">
   <div class="row">
     <?php
+    // Conectar a la base de datos
     $db = db_connect();
 
-    $query = $db->query('SELECT * FROM coches');
+    // Consulta segura con consulta preparada
+    $stmt = $db->prepare('SELECT * FROM coches');
 
-    foreach ($query as $coche) {
+    // Ejecutar la consulta
+    $stmt->execute();
+
+    // Obtener los resultados
+    $result = $stmt->get_result();
+
+    // Mostrar los resultados
+    while ($coche = $result->fetch_assoc()) {
       echo '<div class="col-md-4">
                         <div class="card">
-                            <img src="' . 'imgs/' . $coche['foto'] . '" class="card-img-top" alt="' . $coche['marca'] . '">
+                            <img src="' . 'imgs/' . htmlspecialchars($coche['foto'], ENT_QUOTES, 'UTF-8') . '" class="card-img-top" alt="' . htmlspecialchars($coche['marca'], ENT_QUOTES, 'UTF-8') . '">
                             <div class="card-body text-center">
-                                <h5 class="card-title">' . $coche['modelo'] . '</h5>
-                                <p class="card-text">Año: ' . $coche['anio'] . '</p>
-                                <p class="card-text">Precio: ' . $coche['precio'] . ' €</p>
-                                <a href="car_details.php?id=' . $coche['id'] . '" class="btn btn-primary">Ver Detalles</a>
+                                <h5 class="card-title">' . htmlspecialchars($coche['modelo'], ENT_QUOTES, 'UTF-8') . '</h5>
+                                <p class="card-text">Año: ' . htmlspecialchars($coche['anio'], ENT_QUOTES, 'UTF-8') . '</p>
+                                <p class="card-text">Precio: ' . htmlspecialchars($coche['precio'], ENT_QUOTES, 'UTF-8') . ' €</p>
+                                <a href="car_details.php?id=' . urlencode($coche['id']) . '" class="btn btn-primary">Ver Detalles</a>
                             </div>
                         </div>
                       </div>';
@@ -50,4 +59,4 @@
 </div>
 
 <script src="js/meteo.js"></script>
-<? include("footer.php"); ?>
+<?php include("footer.php"); ?>
